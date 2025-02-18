@@ -3,32 +3,111 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My CV</title>
+    <title>{{ name }} - Resume</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        .container {
+            max-width: 800px;
+            background: white;
+            padding: 20px;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        h1, h2 {
+            color: #333;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            margin-bottom: 5px;
+        }
+        .section {
+            margin-bottom: 20px;
+        }
+        .header {
+            text-align: center;
+        }
+        .contact {
+            text-align: center;
+            font-size: 14px;
+        }
+    </style>
 </head>
 <body>
-    <h1>{{ name }}</h1>
-    <p><strong>Email:</strong> {{ email }}</p>
-    <p><strong>Phone:</strong> {{ phone }}</p>
 
-    <h2>Education</h2>
-    <ul>
-        {% for edu in education %}
-            <li>{{ edu.degree }} - {{ edu.institution }} ({{ edu.year }})</li>
-        {% endfor %}
-    </ul>
+    <div class="container">
+        <div class="header">
+            <h1>{{ name }}</h1>
+            <p class="contact">
+                <strong>Email:</strong> <a href="mailto:{{ email }}">{{ email }}</a> | 
+                <strong>Phone:</strong> {{ phone }} |
+                <strong>GitHub:</strong> <a href="{{ github }}" target="_blank">{{ github }}</a> |
+                <strong>LinkedIn:</strong> <a href="{{ linkedin }}" target="_blank">{{ linkedin }}</a>
+            </p>
+        </div>
 
-    <!-- <h2>Experience</h2>
-    <ul>
-        {% for job in experience %}
-            <li><strong>{{ job.position }}</strong> at {{ job.company }} ({{ job.years }})</li>
-        {% endfor %}
-    </ul> -->
+        <div class="section">
+            <h2>Education</h2>
+            <ul>
+                {% for edu in education %}
+                    <li><strong>{{ edu.degree }}</strong> - {{ edu.institution }} ({{ edu.year }})</li>
+                {% endfor %}
+            </ul>
+        </div>
 
-    <h2>Skills</h2>
-    <ul>
-        {% for skill in skills %}
-            <li>{{ skill }}</li>
-        {% endfor %}
-    </ul>
+        <div class="section">
+            <h2>Skills</h2>
+            <ul>
+                {% for skill in skills %}
+                    <li>{{ skill }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>Projects</h2>
+            <ul>
+                {% for project in projects %}
+                    <li><strong>{{ project.name }}</strong> ({{ project.duration }}) - {{ project.description }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>Work Experience</h2>
+            <ul>
+                {% for job in experience %}
+                    <li><strong>{{ job.position }}</strong> - {{ job.company }} ({{ job.years }})</li>
+                    <ul>
+                        {% for duty in job.responsibilities %}
+                            <li>{{ duty }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>Relevant Coursework</h2>
+            <ul>
+                {% for course in coursework %}
+                    <li><strong>{{ course.name }}</strong> ({{ course.term }}) - {{ course.description }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>Extracurricular Activities</h2>
+            <p>{{ extracurricular }}</p>
+        </div>
+
+    </div>
+
 </body>
 </html>
