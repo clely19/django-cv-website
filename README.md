@@ -7,7 +7,7 @@ This is a Django-based CV website built using Django templates. It dynamically d
 First, clone the GitHub repository:
 
 ```bash
-git clone https://github.com/clely19/django-cv-website.git
+git clone git@github.com:clely19/django-cv-website.git
 cd django-cv-website
 ```
 
