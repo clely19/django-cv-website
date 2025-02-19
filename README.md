@@ -25,19 +25,19 @@ pip install django
 Run the following command to create a new Django project:
 
 ```bash
-django-admin startproject mycv
+python3 -m django startproject mycv
 cd mycv
 ```
 
 ---
 ###  Create a Django App
-Inside your project folder, create an app where you'll manage your CV:
+Inside your project folder, create an app where you'll manage your CV and register this app in mycv/settings.py by adding 'cvapp' to the INSTALLED_APPS list.
 
 ```bash
-python manage.py startapp cvapp
+python3 manage.py startapp cvapp
 ```
 
-Register this app in mycv/settings.py by adding 'cvapp' to the INSTALLED_APPS list.
+
 ---
 ###  Create a Django Template for Your CV
 Inside your app (cvapp), create a templates folder and a subfolder named cvapp and then, create an HTML file for your CV inside it and edit cv.html to add your CV content using Django template
@@ -46,7 +46,6 @@ mkdir -p cvapp/templates/cvapp
 touch cvapp/templates/cvapp/cv.html
 ```
 
-Register this app in mycv/settings.py by adding 'cvapp' to the INSTALLED_APPS list.
 ---
 ###  Create a Django View
 In cvapp/views.py, define a function that will send CV data to the template:
@@ -55,13 +54,13 @@ In cvapp/views.py, define a function that will send CV data to the template:
 ###  Configure URLs and Run the Server and View Your CV
 Modify mycv/urls.py to include your app's URLs and apply migrations and start the Django server.
 ```bash
-python manage.py migrate
-python manage.py runserver
+python3 manage.py migrate
+python3 manage.py runserver
 ```
 
 ---
 
-### 5️⃣ View the CV
+### View the CV
 Open a web browser and visit:
 
 ```bash
