@@ -6,37 +6,85 @@
     <title>{{ name }} - Resume</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-            padding: 20px;
-            background-color: #f4f4f4;
+            font-family: "Times New Roman", serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+            color: black;
         }
+
         .container {
             max-width: 800px;
+            margin: 30px auto;
             background: white;
-            padding: 20px;
-            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
         }
-        h1, h2 {
-            color: #333;
-        }
-        ul {
-            list-style-type: none;
-            padding: 0;
-        }
-        li {
-            margin-bottom: 5px;
-        }
-        .section {
-            margin-bottom: 20px;
-        }
+
         .header {
             text-align: center;
+            padding-bottom: 10px;
+            border-bottom: 2px solid black;
         }
+
+        h1 {
+            margin: 0;
+            font-size: 26px;
+        }
+
         .contact {
-            text-align: center;
+            font-size: 14px;
+            margin-top: 5px;
+        }
+
+        .contact a {
+            color: black;
+            text-decoration: none;
+        }
+
+        .contact a:hover {
+            text-decoration: underline;
+        }
+
+        .section {
+            margin-top: 25px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .section h2 {
+            font-size: 20px;
+            margin-bottom: 10px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .section ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .section ul li {
+            margin-bottom: 8px;
+            line-height: 1.5;
+        }
+
+        .job-title {
+            font-weight: bold;
+        }
+
+        .date {
+            float: right;
+            font-style: italic;
             font-size: 14px;
         }
+
+        .bold {
+            font-weight: bold;
+        }
+
     </style>
 </head>
 <body>
@@ -56,25 +104,25 @@
             <h2>Education</h2>
             <ul>
                 {% for edu in education %}
-                    <li><strong>{{ edu.degree }}</strong> - {{ edu.institution }} ({{ edu.year }})</li>
+                    <li><span class="bold">{{ edu.degree }}</span> - {{ edu.institution }} <span class="date">{{ edu.year }}</span></li>
                 {% endfor %}
             </ul>
         </div>
 
         <div class="section">
             <h2>Skills</h2>
-            <ul>
-                {% for skill in skills %}
-                    <li>{{ skill }}</li>
-                {% endfor %}
-            </ul>
+            <p><strong>Programming Languages:</strong> {{ skills.programming_languages|join:", " }}</p>
+            <p><strong>Web Development:</strong> {{ skills.web_development|join:", " }}</p>
+            <p><strong>Mobile App Development:</strong> {{ skills.mobile_dev|join:", " }}</p>
+            <p><strong>Tools and Frameworks:</strong> {{ skills.tools_frameworks|join:", " }}</p>
         </div>
 
         <div class="section">
             <h2>Projects</h2>
             <ul>
                 {% for project in projects %}
-                    <li><strong>{{ project.name }}</strong> ({{ project.duration }}) - {{ project.description }}</li>
+                    <li><span class="bold">{{ project.name }}</span> <span class="date">{{ project.duration }}</span><br>
+                    {{ project.description }}</li>
                 {% endfor %}
             </ul>
         </div>
@@ -83,7 +131,7 @@
             <h2>Work Experience</h2>
             <ul>
                 {% for job in experience %}
-                    <li><strong>{{ job.position }}</strong> - {{ job.company }} ({{ job.years }})</li>
+                    <li><span class="bold">{{ job.position }}</span> - {{ job.company }} <span class="date">{{ job.years }}</span></li>
                     <ul>
                         {% for duty in job.responsibilities %}
                             <li>{{ duty }}</li>
@@ -97,14 +145,24 @@
             <h2>Relevant Coursework</h2>
             <ul>
                 {% for course in coursework %}
-                    <li><strong>{{ course.name }}</strong> ({{ course.term }}) - {{ course.description }}</li>
+                    <li><span class="bold">{{ course.name }}</span> <span class="date">{{ course.term }}</span><br>
+                    {{ course.description }}</li>
                 {% endfor %}
             </ul>
         </div>
 
         <div class="section">
             <h2>Extracurricular Activities</h2>
-            <p>{{ extracurricular }}</p>
+            <ul>
+                {% for activity in extracurricular %}
+                    <li><span class="bold">{{ activity.role }}</span> - {{ activity.organization }} <span class="date">{{ activity.years }}</span></li>
+                    <ul>
+                        {% for duty in activity.responsibilities %}
+                            <li>{{ duty }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endfor %}
+            </ul>
         </div>
 
     </div>
